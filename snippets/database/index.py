@@ -25,11 +25,11 @@ def authenticate_with_admin_privileges():
     from firebase_admin import db
 
     # Fetch the service account key JSON file contents
-    cred = credentials.Certificate('path/to/serviceAccountKey.json')
+    cred = credentials.Certificate('serviceAccountKey.json')
 
     # Initialize the app with a service account, granting admin privileges
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://databaseName.firebaseio.com'
+        'databaseURL': 'https://poesiacolectiva-7f23e-default-rtdb.europe-west1.firebasedatabase.app/'
     })
 
     # As an admin, the app has access to read and write all data, regradless of Security Rules
@@ -45,11 +45,11 @@ def authenticate_with_limited_privileges():
     from firebase_admin import db
 
     # Fetch the service account key JSON file contents
-    cred = credentials.Certificate('path/to/serviceAccountKey.json')
+    cred = credentials.Certificate('serviceAccountKey.json')
 
     # Initialize the app with a custom auth variable, limiting the server's access
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://databaseName.firebaseio.com',
+        'databaseURL': 'https://poesiacolectiva-7f23e-default-rtdb.europe-west1.firebasedatabase.app/',
         'databaseAuthVariableOverride': {
             'uid': 'my-service-worker'
         }
@@ -87,13 +87,13 @@ def get_reference():
     # Import database module.
     from firebase_admin import db
 
-    # Get a database reference to our blog.
-    ref = db.reference('server/saving-data/fireblog')
+    # Get a database reference.
+    ref = db.reference('dinosaurs')
     # [END get_reference]
     print(ref.key)
 
 def set_value():
-    ref = db.reference('server/saving-data/fireblog')
+    ref = db.reference('dinosaurs')
 
     # [START set_value]
     users_ref = ref.child('users')
@@ -224,7 +224,7 @@ def read_value():
     from firebase_admin import db
 
     # Get a database reference to our posts
-    ref = db.reference('server/saving-data/fireblog/posts')
+    ref = db.reference('dinosaurs')
 
     # Read the data at the posts reference (this is a blocking operation)
     print(ref.get())
@@ -329,8 +329,8 @@ def complex_query():
     # [END complex_query]
 
 
-service_account = 'path/to/serviceAccount.json'
-database_url = 'https://databaseName.firebaseio.com'
+service_account = 'serviceAccountKey.json'
+database_url = 'https://poesiacolectiva-7f23e-default-rtdb.europe-west1.firebasedatabase.app/'
 
 cred = credentials.Certificate(service_account)
 firebase_admin.initialize_app(cred, {
@@ -338,23 +338,23 @@ firebase_admin.initialize_app(cred, {
 })
 
 get_reference()
-set_value()
-set_child_value()
-update_child()
-update_children()
-overwrite_value()
-push_value()
-push_and_set_value()
-get_push_key()
-run_transaction()
+#set_value()
+#set_child_value()
+#update_child()
+#update_children()
+#overwrite_value()
+#push_value()
+#push_and_set_value()
+#get_push_key()
+#run_transaction()
 
 read_value()
-order_by_child()
+#order_by_child()
 #order_by_nested_child()
-order_by_key()
-order_by_value()
-limit_query()
-range_query()
-complex_query()
+#order_by_key()
+#order_by_value()
+#limit_query()
+#range_query()
+#complex_query()
 
-firebase_admin.delete_app(firebase_admin.get_app())
+#firebase_admin.delete_app(firebase_admin.get_app())
